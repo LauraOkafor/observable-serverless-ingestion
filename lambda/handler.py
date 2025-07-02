@@ -2,45 +2,46 @@ import json
 import boto3
 import os
 
-# Initialize DynamoDB
-dynamodb = boto3.resource('dynamodb')
-table_name = os.environ.get('DYNAMO_TABLE')
-table = dynamodb.Table(table_name)
+s3 = boto3.client('s3')
+sqs = boto3.client('sqs')
+queue_url = os.environ['SQS_URL']
 
 def lambda_handler(event, context):
-    s3 = boto3.client('s3')
-
     for record in event['Records']:
         bucket = record['s3']['bucket']['name']
-        key    = record['s3']['object']['key']  # This is the file name
+        key    = record['s3']['object']['key']
 
         print(f"New file uploaded: {key} in bucket {bucket}")
 
         try:
+            # Get the uploaded file
             response = s3.get_object(Bucket=bucket, Key=key)
-            content = response['Body'].read()
+            content = response['Body'].read().decode('utf-8')
+            print("File content successfully read.")
 
-            try:
-                text = content.decode('utf-8')
-                print("File content successfully read.")
+            # Split into lines
+            lines = content.strip().split('\n')
 
-                # Save entire file content into DynamoDB under file_name key
-                item = {
-                    'file_name': key,  # Must match your table's hash key
-                    'content': text    # Store entire content in one item
+            for line in lines:
+                transformed = line.upper()
+
+                message = {
+                    "file_name": key,
+                    "line": line,
+                    "transformed": transformed
                 }
 
-                table.put_item(Item=item)
-                print(f"Saved to DynamoDB: {item}")
+                print(f"Sending to SQS: {message}")
 
-            except Exception as decode_error:
-                print(f"Could not decode file as text: {decode_error}")
-                print(f"Binary file detected. Size: {len(content)} bytes")
+                sqs.send_message(
+                    QueueUrl=queue_url,
+                    MessageBody=json.dumps(message)
+                )
 
-        except Exception as read_error:
-            print(f"Error reading file from S3: {read_error}")
+        except Exception as e:
+            print(f"Error processing file {key}: {e}")
 
     return {
         'statusCode': 200,
-        'body': json.dumps('File content saved to DynamoDB.')
+        'body': json.dumps('File lines sent to SQS.')
     }

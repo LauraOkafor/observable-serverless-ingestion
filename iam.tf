@@ -46,6 +46,21 @@ resource "aws_iam_role_policy" "lambda_s3_dynamo" {
           "dynamodb:UpdateItem"
         ]
         Resource = aws_dynamodb_table.data_table.arn
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "sqs:ReceiveMessage",
+          "sqs:DeleteMessage",
+          "sqs:GetQueueAttributes",
+          "sqs:SendMessage"
+        ]
+        Resource = aws_sqs_queue.main_queue.arn
+      },
+      {
+        Effect = "Allow"
+        Action = ["sns:Publish"]
+        Resource = "arn:aws:sns:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:data-processing-topic"
       }
     ]
   })

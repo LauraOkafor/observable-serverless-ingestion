@@ -26,6 +26,7 @@ resource "aws_lambda_function" "transform_lambda" {
   environment {
     variables = {
       DYNAMO_TABLE = aws_dynamodb_table.data_table.name
+      SQS_URL      = aws_sqs_queue.main_queue.url
     }
   }
 }
