@@ -10,7 +10,8 @@ By the end of this tutorial, you'll have a complete serverless pipeline that:
 - Includes comprehensive monitoring and alerting
 __________________________________________________________________________________________________
 ## Architecture Overview
-![diagram-export-05-07-2025-00_43_00](https://github.com/user-attachments/assets/c9d942c9-0265-445a-b23b-84c506d69c3f)
+![diagram-export-08-07-2025-00_13_37](https://github.com/user-attachments/assets/9585d264-5726-4e6a-b792-46e684048af8)
+
 
 ___________________________________________________________________________________________________________________________________
 ## 📁 Project Structure
@@ -134,8 +135,8 @@ Screenshot:
 - - "File content successfully read"
 
 Screenshot:
-<img width="1393" alt="Screenshot 2025-07-07 at 21 39 19" src="https://github.com/user-attachments/assets/ac1330cb-5e38-4070-8dfa-7ee8dd76e355" />
 <img width="1393" alt="Screenshot 2025-07-07 at 21 13 57" src="https://github.com/user-attachments/assets/c36ad4ed-0325-4ddc-870c-f03ca67ea339" />
+<img width="1393" alt="Screenshot 2025-07-07 at 21 39 19" src="https://github.com/user-attachments/assets/ac1330cb-5e38-4070-8dfa-7ee8dd76e355" />
 
 ---
 
@@ -165,8 +166,9 @@ Screenshot:
 
 - Messages Sent (spikes when file uploaded)
 <<<<<<< HEAD
-<img width="1552" alt="Screenshot 2025-07-07 at 21 51 18" src="https://github.com/user-attachments/assets/d9aa8ccb-c0fb-4e5b-8362-825fb5fed01c" />
 <img width="1552" alt="Screenshot 2025-07-07 at 21 48 54" src="https://github.com/user-attachments/assets/22da63fa-7a97-4f32-92d1-f2982f9204b2" />
+<img width="1552" alt="Screenshot 2025-07-07 at 21 51 18" src="https://github.com/user-attachments/assets/d9aa8ccb-c0fb-4e5b-8362-825fb5fed01c" />
+
 =======
 __________________________________________________________________________________________________
 >>>>>>> 573a71a (new config files)
