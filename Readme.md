@@ -9,6 +9,10 @@ By the end of this tutorial, you'll have a complete serverless pipeline that:
 - Sends notifications via SNS
 - Includes comprehensive monitoring and alerting
 __________________________________________________________________________________________________
+## Architecture Overview
+![diagram-export-05-07-2025-00_43_00](https://github.com/user-attachments/assets/c9d942c9-0265-445a-b23b-84c506d69c3f)
+
+___________________________________________________________________________________________________________________________________
 ## 📁 Project Structure
 Here's the complete structure we'll create:
 
@@ -114,6 +118,8 @@ After uploading your test file:
 1. Verify S3 Bucket
 Go to: S3 Console → Your bucket
 Screenshot:
+<img width="1431" alt="Screenshot 2025-07-07 at 20 58 48" src="https://github.com/user-attachments/assets/be0b0d1f-f1ee-4218-8648-c645dbacecb7" />
+
 --- 
 
 2. Verify Lambda Trigger
@@ -128,16 +134,26 @@ Look for: Recent log entries showing:
 "File content successfully read"
 
 Screenshot:
+<img width="1393" alt="Screenshot 2025-07-07 at 21 39 19" src="https://github.com/user-attachments/assets/ac1330cb-5e38-4070-8dfa-7ee8dd76e355" />
+<img width="1393" alt="Screenshot 2025-07-07 at 21 13 57" src="https://github.com/user-attachments/assets/c36ad4ed-0325-4ddc-870c-f03ca67ea339" />
+
 ---
 
 3. Verify S3 Event Configuration
 Go to: S3 Console → Your bucket → Properties → Event notifications
 
 Screenshot: Lambda trigger configuration
+<img width="1424" alt="Screenshot 2025-07-07 at 21 43 17" src="https://github.com/user-attachments/assets/bd4b95a2-1121-45b6-84d1-73f24baf9ba6" />
+
 ---
 
 4. Verify DynamoDB Table
 DynamoDB Console → Tables → processed-files → Items tab
+
+Screenshot:
+<img width="1552" alt="Screenshot 2025-07-07 at 21 46 00" src="https://github.com/user-attachments/assets/f8a51941-00fd-4746-a9e7-ce43960700cd" />
+
+
 ---
 
 5. Verify SQS Message Flow
@@ -148,24 +164,36 @@ DynamoDB Console → Tables → processed-files → Items tab
 - Screenshot: Message metrics showing:
 
 - Messages Sent (spikes when file uploaded)
+<img width="1552" alt="Screenshot 2025-07-07 at 21 51 18" src="https://github.com/user-attachments/assets/d9aa8ccb-c0fb-4e5b-8362-825fb5fed01c" />
+<img width="1552" alt="Screenshot 2025-07-07 at 21 48 54" src="https://github.com/user-attachments/assets/22da63fa-7a97-4f32-92d1-f2982f9204b2" />
 
 ---
 6. Check Consumer Lambda
 - Go to: Lambda Console → sqs-consumer-lambda
 
 - Click: Monitor tab → View CloudWatch logs
+  
+Screenshot:
+<img width="1552" alt="Screenshot 2025-07-07 at 21 53 34" src="https://github.com/user-attachments/assets/2fe22cfe-6ca6-4943-8265-93de391bfac3" />
+
+
 --- 
 
 7. Verify DLQ (Should be Empty)
 - Go to: SQS Console → file-processing-dlq
 
 - Screenshot: 0 messages (no failures)
+<img width="1424" alt="Screenshot 2025-07-07 at 21 56 05" src="https://github.com/user-attachments/assets/68039749-db2d-43c4-ae76-7a6d2a642836" />
+
 ---
 
 8. Verify SNS Topic
 Go to: SNS Console → Topics → data-processing-topic
-Click: Subscriptions tab
-Check your email inbo
+Check your email inbox
+screenshot:
+<img width="1198" alt="Screenshot 2025-07-07 at 22 07 00" src="https://github.com/user-attachments/assets/f891dd2b-6f1d-4449-aa06-69d38bf746d7" />
+<img width="1198" alt="Screenshot 2025-07-07 at 22 06 51" src="https://github.com/user-attachments/assets/34f64803-fa7a-4e61-9f78-4db22a0dbcb9" />
 
-9. X-Ray Service Map
+
+10. X-Ray Service Map
 Go to: X-Ray Console → Service map
