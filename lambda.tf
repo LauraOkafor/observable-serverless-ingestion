@@ -29,6 +29,10 @@ resource "aws_lambda_function" "transform_lambda" {
       SQS_URL      = aws_sqs_queue.main_queue.url
     }
   }
+  # Enable AWS X-Ray tracing
+  tracing_config {
+    mode = "Active"
+  }
 }
 
 # Allow S3 bucket to invoke the Lambda
@@ -56,6 +60,11 @@ resource "aws_lambda_function" "consumer_lambda" {
       DYNAMO_TABLE  = aws_dynamodb_table.data_table.name
       SNS_TOPIC_ARN = aws_sns_topic.notify_topic.arn
     }
+  }
+
+  # Enable AWS X-Ray tracing
+  tracing_config {
+    mode = "Active"
   }
 }
 

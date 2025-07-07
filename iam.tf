@@ -57,11 +57,26 @@ resource "aws_iam_role_policy" "lambda_s3_dynamo" {
         ]
         Resource = aws_sqs_queue.main_queue.arn
       },
+
+      # Allow Lambda to publish messages to SNS topic
       {
-        Effect = "Allow"
-        Action = ["sns:Publish"]
+        Effect   = "Allow"
+        Action   = ["sns:Publish"]
         Resource = "arn:aws:sns:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:data-processing-topic"
+      },
+
+      # Allow Lambda to push custom metrics to CloudWatch 
+      {
+        Effect   = "Allow",
+        Action   = ["cloudwatch:PutMetricData"],
+        Resource = "*"
       }
     ]
   })
+}
+
+# Allow Lambda to write X-Ray traces
+resource "aws_iam_role_policy_attachment" "lambda_xray" {
+  policy_arn = "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
+  role       = aws_iam_role.lambda_role.name
 }

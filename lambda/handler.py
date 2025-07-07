@@ -2,10 +2,34 @@ import json
 import boto3
 import os
 
+# Initialize AWS clients
 s3 = boto3.client('s3')
 sqs = boto3.client('sqs')
+cloudwatch = boto3.client('cloudwatch')
+
+# Read the SQS queue URL from environment variable
 queue_url = os.environ['SQS_URL']
 
+#CloudWatch Custom Metrics Setup
+def publish_line_count(count, context):
+    cloudwatch.put_metric_data(
+        Namespace='ObservableIngestionApp',
+        MetricData=[
+            {
+                'MetricName': 'LinesProcessed',
+                'Dimensions': [
+                    {
+                        'Name': 'FunctionName',
+                        'Value': context.function_name
+                    },
+                ],
+                'Unit': 'Count',
+                'Value': count
+            },
+        ]
+    )
+    
+# Main Lambda handler 
 def lambda_handler(event, context):
     for record in event['Records']:
         bucket = record['s3']['bucket']['name']
@@ -32,12 +56,16 @@ def lambda_handler(event, context):
                 }
 
                 print(f"Sending to SQS: {message}")
-
+                
+                # Send to SQS queue
                 sqs.send_message(
                     QueueUrl=queue_url,
                     MessageBody=json.dumps(message)
                 )
-
+                
+            # Publish count of processed lines to CloudWatch
+            publish_line_count(len(lines), context)
+            
         except Exception as e:
             print(f"Error processing file {key}: {e}")
 
