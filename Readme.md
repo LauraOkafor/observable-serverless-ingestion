@@ -1,5 +1,5 @@
 # 🧠 Observable Serverless Ingestion Pipeline with Terraform
-Build a fully serverless, observable data ingestion pipeline using AWS + Terraform. This pipeline reads files uploaded to S3, transforms the data with Lambda, stores it in DynamoDB, queues it through SQS, and notifies via SNS all with full observability using CloudWatch and X-Ray.
+> **Built a fully serverless, observable data ingestion pipeline using AWS + Terraform. This pipeline reads files uploaded to S3, transforms the data with Lambda, stores it in DynamoDB, queues it through SQS, and notifies via SNS all with full observability using CloudWatch and X-Ray.**
 __________________________________________________________________________________________________
 ## 🎯 What You'll Build
 By the end of this tutorial, you'll have a complete serverless pipeline that:
@@ -115,23 +115,23 @@ ________________________________________________________________________________
 
 After uploading your test file:
 
-1. Verify S3 Bucket
+### 1. Verify S3 Bucket
 Go to: S3 Console → Your bucket
 Screenshot:
 <img width="1431" alt="Screenshot 2025-07-07 at 20 58 48" src="https://github.com/user-attachments/assets/be0b0d1f-f1ee-4218-8648-c645dbacecb7" />
 
 --- 
 
-2. Verify Lambda Trigger
-Go to: Lambda Console → s3-triggered-transform-lambda
+### 2. Verify Lambda Trigger
+- Go to: Lambda Console → s3-triggered-transform-lambda
 
-Click: Monitor tab → View CloudWatch logs
+- Click: Monitor tab → View CloudWatch logs
 
-Look for: Recent log entries showing:
+- Look for: Recent log entries showing:
 
-"New file uploaded: [filename] in bucket [bucket-name]"
+- - "New file uploaded: [filename] in bucket [bucket-name]"
 
-"File content successfully read"
+- - "File content successfully read"
 
 Screenshot:
 <img width="1393" alt="Screenshot 2025-07-07 at 21 39 19" src="https://github.com/user-attachments/assets/ac1330cb-5e38-4070-8dfa-7ee8dd76e355" />
@@ -139,7 +139,7 @@ Screenshot:
 
 ---
 
-3. Verify S3 Event Configuration
+### 3. Verify S3 Event Configuration
 Go to: S3 Console → Your bucket → Properties → Event notifications
 
 Screenshot: Lambda trigger configuration
@@ -147,7 +147,7 @@ Screenshot: Lambda trigger configuration
 
 ---
 
-4. Verify DynamoDB Table
+### 4. Verify DynamoDB Table
 DynamoDB Console → Tables → processed-files → Items tab
 
 Screenshot:
@@ -156,7 +156,7 @@ Screenshot:
 
 ---
 
-5. Verify SQS Message Flow
+### 5. Verify SQS Message Flow
 - Go to: SQS Console → file-processing-queue
 
 - Click: Monitoring tab
@@ -164,31 +164,43 @@ Screenshot:
 - Screenshot: Message metrics showing:
 
 - Messages Sent (spikes when file uploaded)
+<<<<<<< HEAD
 <img width="1552" alt="Screenshot 2025-07-07 at 21 51 18" src="https://github.com/user-attachments/assets/d9aa8ccb-c0fb-4e5b-8362-825fb5fed01c" />
 <img width="1552" alt="Screenshot 2025-07-07 at 21 48 54" src="https://github.com/user-attachments/assets/22da63fa-7a97-4f32-92d1-f2982f9204b2" />
+=======
+__________________________________________________________________________________________________
+>>>>>>> 573a71a (new config files)
 
----
-6. Check Consumer Lambda
+### 6. Check Consumer Lambda
 - Go to: Lambda Console → sqs-consumer-lambda
 
 - Click: Monitor tab → View CloudWatch logs
+<<<<<<< HEAD
   
 Screenshot:
 <img width="1552" alt="Screenshot 2025-07-07 at 21 53 34" src="https://github.com/user-attachments/assets/2fe22cfe-6ca6-4943-8265-93de391bfac3" />
 
 
 --- 
+=======
+>>>>>>> 573a71a (new config files)
 
-7. Verify DLQ (Should be Empty)
+__________________________________________________________________________________________________
+### 7. Verify DLQ (Should be Empty)
 - Go to: SQS Console → file-processing-dlq
 
 - Screenshot: 0 messages (no failures)
+<<<<<<< HEAD
 <img width="1424" alt="Screenshot 2025-07-07 at 21 56 05" src="https://github.com/user-attachments/assets/68039749-db2d-43c4-ae76-7a6d2a642836" />
 
 ---
+=======
+>>>>>>> 573a71a (new config files)
 
+__________________________________________________________________________________________________
 8. Verify SNS Topic
 Go to: SNS Console → Topics → data-processing-topic
+<<<<<<< HEAD
 Check your email inbox
 screenshot:
 <img width="1198" alt="Screenshot 2025-07-07 at 22 07 00" src="https://github.com/user-attachments/assets/f891dd2b-6f1d-4449-aa06-69d38bf746d7" />
@@ -197,3 +209,45 @@ screenshot:
 
 10. X-Ray Service Map
 Go to: X-Ray Console → Service map
+=======
+
+Check your email inbox
+
+- Screenshot:
+__________________________________________________________________________________________________
+9. X-Ray Service Map
+- **Go to:** X-Ray Console → Service map
+- **Shows:** Visual diagram of your entire pipeline flow
+- **Proves:** End-to-end observability is working
+
+Screenshot: - ✅ **Complete pipeline visibility** (X-Ray)
+__________________________________________________________________________________________________
+
+10. Lambda Built-in Metrics
+- **Go to:** Lambda Console → `s3-triggered-transform-lambda` → Monitor tab
+- **Shows:** Invocations, Duration, and Error rate graphs
+- **Proves:** Lambda monitoring and performance tracking
+
+Screenshot: - ✅ **Performance monitoring** (Lambda metrics)
+
+__________________________________________________________________________________________________
+
+Custom Metrics
+- **Go to:** CloudWatch Console → Metrics → All metrics → `ObservableIngestionApp`
+- **Shows:** `LinesProcessed` metric with actual data points
+- **Proves:** Custom business metrics are being published
+
+Screenshot:- ✅ **Custom business tracking** (Custom metrics)
+__________________________________________________________________________________________________
+
+CloudWatch Alarms Dashboard
+- **Go to:** CloudWatch Console → Alarms → All alarms
+- **Shows:** All 4 alarms in "OK" state (green):
+  - `lambda-high-error-rate`
+  - `lambda-high-duration`
+  - `sqs-queue-depth-high`
+  - `low-lines-processed`
+- **Proves:** Monitoring and alerting system is active
+
+Screenshot: - ✅ **Proactive alerting** (Alarms)
+>>>>>>> 573a71a (new config files)

@@ -1,6 +1,11 @@
 import json
 import boto3
 import os
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.core import patch_all
+
+# Patch all AWS SDK calls for X-Ray tracing
+patch_all()
 
 # Initialize AWS clients
 s3 = boto3.client('s3')
@@ -30,6 +35,7 @@ def publish_line_count(count, context):
     )
     
 # Main Lambda handler 
+@xray_recorder.capture('lambda_handler')
 def lambda_handler(event, context):
     for record in event['Records']:
         bucket = record['s3']['bucket']['name']
