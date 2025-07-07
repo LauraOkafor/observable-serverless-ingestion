@@ -16,7 +16,7 @@ ________________________________________________________________________________
 ___________________________________________________________________________________________________________________________________
 ## 📁 Project Structure
 Here's the complete structure we'll create:
-
+```
 observable-serverless-ingestion/
 ├── cloudwatch.tf              # Logging, X-Ray, and custom metrics
 ├── consumer_lambda.zip        # Packaged SQS consumer Lambda
@@ -34,6 +34,8 @@ observable-serverless-ingestion/
 ├── sqs.tf                     # SQS and DLQ resources
 ├── terraform.tfvars           # Variable values
 └── tvariables.tf              # Variable declarations
+
+```
 __________________________________________________________________________________________________
 
 ## 🚀 Step-by-Step Implementation Guide
@@ -165,45 +167,36 @@ Screenshot:
 - Screenshot: Message metrics showing:
 
 - Messages Sent (spikes when file uploaded)
-<<<<<<< HEAD
+
 <img width="1552" alt="Screenshot 2025-07-07 at 21 48 54" src="https://github.com/user-attachments/assets/22da63fa-7a97-4f32-92d1-f2982f9204b2" />
 <img width="1552" alt="Screenshot 2025-07-07 at 21 51 18" src="https://github.com/user-attachments/assets/d9aa8ccb-c0fb-4e5b-8362-825fb5fed01c" />
 
-=======
+
 __________________________________________________________________________________________________
->>>>>>> 573a71a (new config files)
+
 
 ### 6. Check Consumer Lambda
 - Go to: Lambda Console → sqs-consumer-lambda
 
 - Click: Monitor tab → View CloudWatch logs
-<<<<<<< HEAD
   
 Screenshot:
 <img width="1552" alt="Screenshot 2025-07-07 at 21 53 34" src="https://github.com/user-attachments/assets/2fe22cfe-6ca6-4943-8265-93de391bfac3" />
 
-
---- 
-=======
->>>>>>> 573a71a (new config files)
-
 __________________________________________________________________________________________________
+
 ### 7. Verify DLQ (Should be Empty)
 - Go to: SQS Console → file-processing-dlq
 
 - Screenshot: 0 messages (no failures)
-<<<<<<< HEAD
-<img width="1424" alt="Screenshot 2025-07-07 at 21 56 05" src="https://github.com/user-attachments/assets/68039749-db2d-43c4-ae76-7a6d2a642836" />
 
----
-=======
->>>>>>> 573a71a (new config files)
+<img width="1424" alt="Screenshot 2025-07-07 at 21 56 05" src="https://github.com/user-attachments/assets/68039749-db2d-43c4-ae76-7a6d2a642836" />
 
 __________________________________________________________________________________________________
 8. Verify SNS Topic
-Go to: SNS Console → Topics → data-processing-topic
-<<<<<<< HEAD
-Check your email inbox
+- Go to: SNS Console → Topics → data-processing-topic
+- Check your email inbox
+
 screenshot:
 <img width="1198" alt="Screenshot 2025-07-07 at 22 07 00" src="https://github.com/user-attachments/assets/f891dd2b-6f1d-4449-aa06-69d38bf746d7" />
 <img width="1198" alt="Screenshot 2025-07-07 at 22 06 51" src="https://github.com/user-attachments/assets/34f64803-fa7a-4e61-9f78-4db22a0dbcb9" />
