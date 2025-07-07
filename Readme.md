@@ -50,7 +50,7 @@ ________________________________________________________________________________
 To avoid writing any code from scratch, all Terraform configuration files are already available in the GitHub repository.
 
 📁 Navigate to the GitHub repo:
-👩‍💻 GitHub: https://github.com/LauraOkafor/observable-serverless-ingestion
+- 👩‍💻 GitHub: https://github.com/LauraOkafor/observable-serverless-ingestion
 
 📝 Then copy each of the following files directly from the project root:
 - variables.tf — defines input variables like AWS region, email, and Lambda config.
@@ -205,22 +205,16 @@ Check your email inbox
 screenshot:
 <img width="1198" alt="Screenshot 2025-07-07 at 22 07 00" src="https://github.com/user-attachments/assets/f891dd2b-6f1d-4449-aa06-69d38bf746d7" />
 <img width="1198" alt="Screenshot 2025-07-07 at 22 06 51" src="https://github.com/user-attachments/assets/34f64803-fa7a-4e61-9f78-4db22a0dbcb9" />
+____________________________________________________________________________________________________________
 
-
-10. X-Ray Service Map
-Go to: X-Ray Console → Service map
-=======
-
-Check your email inbox
-
-- Screenshot:
-__________________________________________________________________________________________________
 9. X-Ray Service Map
 - **Go to:** X-Ray Console → Service map
 - **Shows:** Visual diagram of your entire pipeline flow
 - **Proves:** End-to-end observability is working
 
 Screenshot: - ✅ **Complete pipeline visibility** (X-Ray)
+<img width="1550" alt="Screenshot 2025-07-07 at 23 23 39" src="https://github.com/user-attachments/assets/2d096940-e9c0-4e43-9eeb-5249abe431a6" />
+
 __________________________________________________________________________________________________
 
 10. Lambda Built-in Metrics
@@ -229,6 +223,7 @@ ________________________________________________________________________________
 - **Proves:** Lambda monitoring and performance tracking
 
 Screenshot: - ✅ **Performance monitoring** (Lambda metrics)
+<img width="1440" alt="Screenshot 2025-07-08 at 00 04 41" src="https://github.com/user-attachments/assets/5184383f-2591-4545-b5a5-a102f4509f6b" />
 
 __________________________________________________________________________________________________
 
@@ -238,6 +233,8 @@ Custom Metrics
 - **Proves:** Custom business metrics are being published
 
 Screenshot:- ✅ **Custom business tracking** (Custom metrics)
+<img width="1550" alt="Screenshot 2025-07-07 at 23 27 13" src="https://github.com/user-attachments/assets/01c6b64b-cfad-4c20-8e93-d10be809bc57" />
+
 __________________________________________________________________________________________________
 
 CloudWatch Alarms Dashboard
@@ -250,4 +247,5 @@ CloudWatch Alarms Dashboard
 - **Proves:** Monitoring and alerting system is active
 
 Screenshot: - ✅ **Proactive alerting** (Alarms)
->>>>>>> 573a71a (new config files)
+<img width="1550" alt="Screenshot 2025-07-07 at 23 39 52" src="https://github.com/user-attachments/assets/84d2e42b-e851-4a38-bee4-6c85e308ca97" />
+
